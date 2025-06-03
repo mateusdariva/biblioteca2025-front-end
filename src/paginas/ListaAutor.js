@@ -2,12 +2,12 @@ import TituloLista from "../componentes/TítuloLista";
 import axios from "axios";
 import {useState, useEffect } from "react";
 
-export default function ListaCategoria(){
+export default function ListaAutor(){
     //Declarando uma variavel useState
     const [dados, setDados] =  useState([]);
 
     const listar = async () => {
-      let { data } = await axios.get('http://localhost:4000/categoria');
+      let { data } = await axios.get('http://localhost:4000/autor');
       setDados(data); 
     }
 
@@ -17,9 +17,9 @@ export default function ListaCategoria(){
 
     return (
         <>
-            <TituloLista titulo ="Categorias" 
-            descricao="Gerencia aqui as categorias dos livros da bilbioteca"
-            rota="/cadastrocategoria"/>
+            <TituloLista titulo ="Autores" 
+            descricao="Gerencia aqui os autores dos livros da bilbioteca"
+            rota="/cadastroautor"/>
 
 
             <>
@@ -28,18 +28,22 @@ export default function ListaCategoria(){
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Foto</th>
         <th scope="col">Código</th>
-        <th scope="col">Categoria</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Nascimento</th>
       </tr>
     </thead>
     <tbody>
       { dados.map( (d, i)=>(
           <tr>
         <td>
-          <a className = "btn btn-primary" href={`/cadastrocategoria/${d.idcategoria}`}> Alterar</a>
+          <a className = "btn btn-primary" href={`/cadastroautor/${d.idautor}`}> Alterar</a>
         </td>
-        <td>{d.idcategoria}</td>
-        <td>{d.nomecategoria}</td>
+        <td><img className="img-thumbnail" src={d.foto} style={{width: '80px'}}/></td>
+        <td>{d.idautor}</td>
+        <td>{d.nomeautor}</td>
+        <td>{d.nascimento}</td>
       </tr>
       ) ) }
     </tbody>
