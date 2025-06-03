@@ -2,12 +2,12 @@ import TituloLista from "../componentes/TítuloLista";
 import axios from "axios";
 import {useState, useEffect } from "react";
 
-export default function ListaCategoria(){
+export default function ListaEditora(){
     //Declarando uma variavel useState
     const [dados, setDados] =  useState([]);
 
     const listar = async () => {
-      let { data } = await axios.get('http://localhost:4000/categoria');
+      let { data } = await axios.get('http://localhost:4000/editora');
       setDados(data); 
     }
 
@@ -17,9 +17,9 @@ export default function ListaCategoria(){
 
     return (
         <>
-            <TituloLista titulo ="Categorias" 
-            descricao="Gerencia aqui as categorias dos livros da bilbioteca"
-            rota="/cadastrocategoria"/>
+            <TituloLista titulo ="Editoras" 
+            descricao="Gerencia aqui as editoras dos livros da bilbioteca"
+            rota="/cadastroeditora"/>
 
 
             <>
@@ -28,19 +28,20 @@ export default function ListaCategoria(){
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Código</th>
-        <th scope="col">Categoria</th>
-        
+        <th scope="col">Nome Editora</th>
+        <th scope="col">CNPJ</th>
+        <th scope="col">Endereço</th>
       </tr>
     </thead>
     <tbody>
       { dados.map( (d, i)=>(
           <tr>
         <td>
-          <a className = "btn btn-primary" href={`/cadastrocategoria/${d.idcategoria}`}> Alterar</a>
+          <a className = "btn btn-primary" href={`/cadastroeditora/${d.ideditora}`}> Alterar</a>
         </td>
-        <td>{d.idcategoria}</td>
-        <td>{d.nomecategoria}</td>
+        <td>{d.nomeeditora}</td>
+        <td>{d.cnpj}</td>
+        <td>{d.endereco}</td>
       </tr>
       ) ) }
     </tbody>
