@@ -59,6 +59,11 @@ export default function Menu(){
                 Editoras
               </a>
             </li>
+               <li>
+              <a className="dropdown-item" href="listalivro">
+                livros
+              </a>
+            </li>
           </ul>
         </li>
       </ul>
